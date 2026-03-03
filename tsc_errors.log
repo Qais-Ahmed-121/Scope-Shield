@@ -1,0 +1,4 @@
+﻿utils/supabase/client.ts(2,26): error TS2307: Cannot find module '@/types/database.types' or its corresponding type declarations.
+utils/supabase/server.ts(3,26): error TS2307: Cannot find module '@/types/database.types' or its corresponding type declarations.
+utils/supabase/server.ts(14,40): error TS2339: Property 'getAll' does not exist on type 'Promise<ReadonlyRequestCookies>'.
+utils/supabase/server.ts(19,41): error TS2339: Property 'set' does not exist on type 'Promise<ReadonlyRequestCookies>'.

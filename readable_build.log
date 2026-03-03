@@ -1,0 +1,270 @@
+
+> temp_app@0.1.0 build
+> next build
+
+??? Next.js 16.1.6 (Turbopack)
+- Environments: .env.local
+
+  Creating an optimized production build ...
+node.exe : Error: 
+`@theme` blocks must 
+only contain custom 
+properties or 
+`@keyframes`.
+At line:1 char:1
++ & "C:\Program Files\
+nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (Error: `@t   
+ heme`...r `@keyfr    
+ames`.:String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+
+  @theme inline {
+>   @media print {
+>     aside {
+>       display: none 
+!important;
+>     }
+>     header {
+>       display: none 
+!important;
+>     }
+>     body {
+>       
+background-color: 
+white !important;
+>     }
+>     .grid {
+>       display: 
+block !important;
+>     }
+>     button {
+>       display: none 
+!important;
+>     }
+>   }
+  }
+  
+    [2m[at C:\Users\q
+aisa\OneDrive\Desktop\
+Vibe Coding\Web Dev\Pr
+ojects\Scope-Shield\no
+de_modules\tailwindcss
+\dist\lib.js:34:10][0
+m
+    [2m[at Pr (C:\Use
+rs\qaisa\OneDrive\Desk
+top\Vibe Coding\Web De
+v\Projects\Scope-Shiel
+d\node_modules\tailwin
+dcss\dist\lib.js:3:173
+3)][0m
+    [2m[at _ (C:\User
+s\qaisa\OneDrive\Deskt
+op\Vibe Coding\Web Dev
+\Projects\Scope-Shield
+\node_modules\tailwind
+css\dist\lib.js:3:1377
+)][0m
+    [2m[at C:\Users\q
+aisa\OneDrive\Desktop\
+Vibe Coding\Web Dev\Pr
+ojects\Scope-Shield\no
+de_modules\tailwindcss
+\dist\lib.js:32:7186]
+[0m
+    [2m[at Pr (C:\Use
+rs\qaisa\OneDrive\Desk
+top\Vibe Coding\Web De
+v\Projects\Scope-Shiel
+d\node_modules\tailwin
+dcss\dist\lib.js:3:173
+3)][0m
+    [2m[at _ (C:\User
+s\qaisa\OneDrive\Deskt
+op\Vibe Coding\Web Dev
+\Projects\Scope-Shield
+\node_modules\tailwind
+css\dist\lib.js:3:1377
+)][0m
+    [2m[at pn (C:\Use
+rs\qaisa\OneDrive\Desk
+top\Vibe Coding\Web De
+v\Projects\Scope-Shiel
+d\node_modules\tailwin
+dcss\dist\lib.js:32:27
+12)][0m
+    [2m[at async dn (
+C:\Users\qaisa\OneDriv
+e\Desktop\Vibe 
+Coding\Web Dev\Project
+s\Scope-Shield\node_mo
+dules\tailwindcss\dist
+\lib.js:38:631)][0m
+    [2m[at async Xr (
+C:\Users\qaisa\OneDriv
+e\Desktop\Vibe 
+Coding\Web Dev\Project
+s\Scope-Shield\node_mo
+dules\@tailwindcss\nod
+e\dist\index.js:10:341
+7)][0m
+    [2m[at async N (C
+:\Users\qaisa\OneDrive
+\Desktop\Vibe 
+Coding\Web Dev\Project
+s\Scope-Shield\node_mo
+dules\@tailwindcss\pos
+tcss\dist\index.js:10:
+3979)][0m
+
+> Build error occurred
+Error: Turbopack 
+build failed with 1 
+errors:
+./src/app/globals.css
+Error evaluating 
+Node.js code
+CssSyntaxError: 
+tailwindcss: C:\Users\
+qaisa\OneDrive\Desktop
+\Vibe Coding\Web Dev\P
+rojects\Scope-Shield\s
+rc\app\globals.css:1:1
+: `@theme` blocks 
+must only contain 
+custom properties or 
+`@keyframes`.
+
+  @theme inline {
+>   @media print {
+>     aside {
+>       display: none 
+!important;
+>     }
+>     header {
+>       display: none 
+!important;
+>     }
+>     body {
+>       
+background-color: 
+white !important;
+>     }
+>     .grid {
+>       display: 
+block !important;
+>     }
+>     button {
+>       display: none 
+!important;
+>     }
+>   }
+  }
+  
+    at Input.error (no
+de_modules/postcss/lib
+/input.js:135:16) [C:\
+Users\qaisa\OneDrive\D
+esktop\Vibe 
+Coding\Web Dev\Project
+s\Scope-Shield\.next\b
+uild\chunks\node_modul
+es_fe693df6._.js:4651:
+22]
+    at Root.error (nod
+e_modules/postcss/lib/
+node.js:146:32) [C:\Us
+ers\qaisa\OneDrive\Des
+ktop\Vibe Coding\Web D
+ev\Projects\Scope-Shie
+ld\.next\build\chunks\
+node_modules_fe693df6.
+_.js:928:38]
+    [at Object.Once (C
+:\Users\qaisa\OneDrive
+\Desktop\Vibe 
+Coding\Web Dev\Project
+s\Scope-Shield\node_mo
+dules\@tailwindcss\pos
+tcss\dist\index.js:10:
+6913)]
+    at async 
+LazyResult.runAsync (n
+ode_modules/postcss/li
+b/lazy-result.js:293:1
+1) [C:\Users\qaisa\One
+Drive\Desktop\Vibe 
+Coding\Web Dev\Project
+s\Scope-Shield\.next\b
+uild\chunks\node_modul
+es_fe693df6._.js:6206:
+21]
+    at async 
+transform (turbopack:/
+//[turbopack-node]/tra
+nsforms/postcss.ts:70:
+34) [C:\Users\qaisa\On
+eDrive\Desktop\Vibe 
+Coding\Web Dev\Project
+s\Scope-Shield\.next\b
+uild\chunks\[root-of-t
+he-server]__51225daf._
+.js:146:36]
+    at async run (turb
+opack:///[turbopack-no
+de]/ipc/evaluate.ts:92
+:23) [C:\Users\qaisa\O
+neDrive\Desktop\Vibe 
+Coding\Web Dev\Project
+s\Scope-Shield\.next\b
+uild\chunks\[root-of-t
+he-server]__974941ed._
+.js:443:31]
+
+Import trace:
+  Client Component 
+Browser:
+    
+./src/app/globals.css 
+[Client Component 
+Browser]
+    
+./src/app/layout.tsx 
+[Server Component]
+
+
+    at async 
+transform (turbopack:/
+//[turbopack-node]/tra
+nsforms/postcss.ts:70:
+34) [C:\Users\qaisa\On
+eDrive\Desktop\Vibe 
+Coding\Web Dev\Project
+s\Scope-Shield\.next\b
+uild\chunks\[root-of-t
+he-server]__51225daf._
+.js:146:36])
+    at async run (turb
+opack:///[turbopack-no
+de]/ipc/evaluate.ts:92
+:23) [C:\Users\qaisa\O
+neDrive\Desktop\Vibe 
+Coding\Web Dev\Project
+s\Scope-Shield\.next\b
+uild\chunks\[root-of-t
+he-server]__974941ed._
+.js:443:31])
