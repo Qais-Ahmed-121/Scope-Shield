@@ -4,7 +4,7 @@ import { RiskMeter, AlertItem } from "@/components/RiskMeter";
 import { RoadmapTimeline, TimelineItem } from "@/components/RoadmapTimeline";
 import { RedlinePreview } from "@/components/RedlinePreview";
 import { ConflictDetector } from "@/components/ConflictDetector";
-import { Download, ArrowLeft, Shield, Calendar, Hash } from "lucide-react";
+import { Download, ArrowLeft, Shield, Calendar, Hash, Sparkles, PlusCircle } from "lucide-react";
 import Link from "next/link";
 import { createClient } from "../../../../../utils/supabase/server";
 import { ExportButtons } from "@/components/ExportButtons";
@@ -46,7 +46,8 @@ export default async function ContractDetailPage({ params }: { params: Promise<{
         description: alert.description,
         severity: alert.severity as any,
         legalTranslation: alert.legal_translation || undefined,
-        negotiationStrategy: alert.suggestion || undefined
+        negotiationStrategy: alert.suggestion || undefined,
+        counterClause: alert.counter_clause || undefined
     }));
 
     const riskScore = (contract as any).risk_score || 0;
@@ -96,6 +97,61 @@ export default async function ContractDetailPage({ params }: { params: Promise<{
                         <p className="text-sm text-red-400/70">
                             {alertItems.filter(a => a.severity === 'critical').length} critical and {alertItems.filter(a => a.severity === 'high').length} high-severity risks detected. Review each flag carefully before signing.
                         </p>
+                    </div>
+                </div>
+            )}
+
+            {/* ── Executive Summary & Industry Compliance ── */}
+            {(contract as any).summary && (
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div className="lg:col-span-2 p-6 bg-white/5 border border-white/10 rounded-2xl shadow-sm relative overflow-hidden">
+                        <div className="absolute top-0 left-0 w-1 h-full bg-indigo-500" />
+                        <div className="flex items-center gap-2 mb-3">
+                            <Sparkles className="w-5 h-5 text-indigo-400" />
+                            <h3 className="text-lg font-bold text-white uppercase tracking-wider">Executive Summary</h3>
+                        </div>
+                        <p className="text-slate-300 leading-relaxed italic pr-4">
+                            &quot;{(contract as any).summary}&quot;
+                        </p>
+                    </div>
+
+                    <div className="p-6 bg-white/5 border border-white/10 rounded-2xl shadow-sm flex flex-col justify-center">
+                        <div className="flex items-center gap-2 mb-2 text-indigo-400">
+                            <Shield className="w-4 h-4" />
+                            <span className="text-xs font-bold uppercase tracking-widest">Industry Alignment</span>
+                        </div>
+                        <p className="text-sm text-slate-300 font-medium">
+                            {(contract as any).overall_assessment || "Standard industry terms detected."}
+                        </p>
+                    </div>
+                </div>
+            )}
+
+            {/* ── Missing Protections ── */}
+            {(contract as any).missing_clauses && (contract as any).missing_clauses.length > 0 && (
+                <div className="space-y-4">
+                    <div className="flex items-center gap-2">
+                        <PlusCircle className="w-5 h-5 text-emerald-400" />
+                        <h3 className="text-lg font-bold text-white uppercase tracking-wider">Missing Protections</h3>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {(contract as any).missing_clauses.map((clause: any, idx: number) => (
+                            <div key={idx} className="p-5 bg-emerald-500/5 border border-emerald-500/10 rounded-2xl hover:bg-emerald-500/10 transition-all group">
+                                <h4 className="text-emerald-400 font-bold mb-2 flex items-center gap-2">
+                                    <Shield className="w-4 h-4 opacity-50" />
+                                    {clause.title}
+                                </h4>
+                                <p className="text-sm text-slate-300 leading-relaxed mb-4">
+                                    {clause.description}
+                                </p>
+                                <div className="p-3 bg-black/40 rounded-xl border border-white/5 relative group-hover:border-emerald-500/20 transition-all">
+                                    <p className="text-[10px] font-bold text-slate-500 uppercase mb-1">Recommended Addition:</p>
+                                    <code className="text-xs text-emerald-300/80 font-mono italic">
+                                        &quot;{clause.suggestedText}&quot;
+                                    </code>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             )}

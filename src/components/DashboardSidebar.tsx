@@ -4,7 +4,8 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Shield, LayoutDashboard, FileText, Settings, LogOut } from "lucide-react";
-import { signout } from "@/app/login/actions";
+import { SignOutButton } from "./SignOutButton";
+import { useUsage } from "@/context/UsageContext";
 
 interface DashboardSidebarProps {
     userEmail: string;
@@ -13,6 +14,7 @@ interface DashboardSidebarProps {
 
 export function DashboardSidebar({ userEmail, recentContracts }: DashboardSidebarProps) {
     const pathname = usePathname();
+    const { tier } = useUsage();
 
     const isActive = (path: string) => {
         if (path === '/dashboard' && pathname === '/dashboard') return true;
@@ -82,24 +84,29 @@ export function DashboardSidebar({ userEmail, recentContracts }: DashboardSideba
             </nav>
 
             <div className="relative z-10 p-4 border-t border-white/10 space-y-1">
-                <div className="flex items-center gap-3 px-3 py-3 mb-2 rounded-xl bg-black/20 border border-white/5">
-                    <div className="h-8 w-8 rounded-full bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-sm font-bold text-indigo-300">
+                <Link
+                    href="/dashboard/settings"
+                    className="flex items-center gap-3 px-3 py-3 mb-2 rounded-xl bg-black/20 border border-white/5 hover:bg-white/5 hover:border-white/10 transition-all group"
+                >
+                    <div className="h-8 w-8 rounded-full bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-sm font-bold text-indigo-300 group-hover:bg-indigo-500 group-hover:text-white transition-all">
                         {userEmail.charAt(0).toUpperCase()}
                     </div>
                     <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-slate-200 truncate">{userEmail}</p>
-                        <p className="text-xs text-indigo-400 font-medium">Free Plan</p>
+                        <p className="text-sm font-medium text-slate-200 truncate group-hover:text-white transition-colors">{userEmail}</p>
+                        <p className="text-xs text-indigo-400 font-medium italic capitalize">{tier} Plan</p>
                     </div>
-                </div>
+                </Link>
 
-                <button className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-400 hover:bg-white/5 hover:text-slate-200 transition-colors border border-transparent">
+                <Link
+                    href="/dashboard/settings"
+                    className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all border border-transparent ${isActive('/dashboard/settings')
+                        ? 'bg-white/10 text-white border-white/10'
+                        : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'
+                        }`}
+                >
                     <Settings className="h-4 w-4" /> Settings
-                </button>
-                <form action={signout} className="w-full">
-                    <button type="submit" className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-400 hover:bg-red-500/10 hover:text-red-400 transition-colors border border-transparent">
-                        <LogOut className="h-4 w-4" /> Sign out
-                    </button>
-                </form>
+                </Link>
+                <SignOutButton />
             </div>
         </aside>
     );

@@ -8,6 +8,7 @@ import { DashboardStats } from "@/components/DashboardStats";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Shield, AlertCircle, X, Sparkles, Crown, Check } from "lucide-react";
 import { toast } from "sonner";
+import { useUsage } from "@/context/UsageContext";
 
 const STAGES = [
     { label: "Scanning Document", sub: "Reading PDF structure and extracting text layers..." },
@@ -29,10 +30,11 @@ export function DashboardClient({ totalContracts, highRiskCount, tasksExtracted,
     const [isProcessing, setIsProcessing] = useState(false);
     const [stageIndex, setStageIndex] = useState(0);
     const [error, setError] = useState<string | null>(null);
-    const [limitReached, setLimitReached] = useState(isFree && scanCount >= 1);
+    const [limitReached, setLimitReached] = useState(isFree && scanCount >= 2);
     const [upgradeSuccess, setUpgradeSuccess] = useState<string | null>(null);
     const router = useRouter();
     const searchParams = useSearchParams();
+    const { setScanCount } = useUsage();
 
     // Auto-confirm Stripe upgrade on redirect back from checkout (no webhook needed)
     useEffect(() => {
@@ -94,6 +96,8 @@ export function DashboardClient({ totalContracts, highRiskCount, tasksExtracted,
 
             if (data.contractId) {
                 toast.success("Contract scanned successfully! Redirecting to report...");
+                setScanCount((prev: number) => prev + 1); // Instant update for header/sidebar
+                router.refresh(); // Refresh to update the scan count in the layout
                 router.push(`/dashboard/contracts/${data.contractId}`);
             } else {
                 const msg = "Analysis ran but no contract was saved. Check your Contracts list.";
@@ -142,7 +146,7 @@ export function DashboardClient({ totalContracts, highRiskCount, tasksExtracted,
                     <Crown className="h-6 w-6 text-amber-400 shrink-0" />
                     <div className="flex-1">
                         <p className="font-bold text-amber-300">Free Scan Limit Reached</p>
-                        <p className="text-sm text-amber-400/70">You&apos;ve used your 1 free contract scan. Upgrade to Pro for unlimited scans.</p>
+                        <p className="text-sm text-amber-400/70">You&apos;ve used your 2 free contract scans. Upgrade to Pro for unlimited scans.</p>
                     </div>
                     <a
                         href="/pricing?ref=limit"
@@ -263,7 +267,7 @@ export function DashboardClient({ totalContracts, highRiskCount, tasksExtracted,
 
                         {isFree && !limitReached && (
                             <p className="mt-5 text-xs text-slate-600 text-center">
-                                {1 - scanCount} free scan{1 - scanCount !== 1 ? "s" : ""} remaining on Free Plan · <a href="/pricing" className="text-indigo-400 hover:underline">Upgrade to Pro</a>
+                                {2 - scanCount} free scan{2 - scanCount !== 1 ? "s" : ""} remaining on Free Plan · <a href="/pricing" className="text-indigo-400 hover:underline">Upgrade to Pro</a>
                             </p>
                         )}
 

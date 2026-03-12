@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS public.contracts (
   title TEXT NOT NULL,
   content_text TEXT,
   risk_score INTEGER,
+  summary TEXT,
   status TEXT DEFAULT 'pending', -- 'pending', 'analyzing', 'completed', 'failed'
   created_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL
 );

@@ -7,6 +7,7 @@ import { Copy, Check, Mail, ChevronDown, ChevronUp, Zap } from "lucide-react";
 interface NegotiationCoPilotProps {
     clauseText: string;          // The original risky clause
     negotiationStrategy?: string; // AI-generated strategy text
+    counterClause?: string;      // Specific AI-generated counter-clause
     planTier?: string;           // "starter" | "professional" | "enterprise"
 }
 
@@ -31,14 +32,21 @@ function generateCounterClause(clauseText: string, strategy: string): string {
     return `Dear [Client Name],\n\nI've reviewed the contract and have a proposed amendment regarding the following clause:\n\n"${clauseText.slice(0, 120)}..."\n\n${strategy}\n\nI believe this adjustment is fair and in line with industry standards. Please let me know if you're open to discussing this before we finalize the agreement.\n\nBest regards,\n[Your Name]`;
 }
 
-export function NegotiationCoPilot({ clauseText, negotiationStrategy, planTier = "starter" }: NegotiationCoPilotProps) {
+export function NegotiationCoPilot({ clauseText, negotiationStrategy, counterClause, planTier = "starter" }: NegotiationCoPilotProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [copied, setCopied] = useState(false);
     const isPro = planTier === "professional" || planTier === "enterprise";
 
-    const counterEmail = negotiationStrategy
-        ? generateCounterClause(clauseText, negotiationStrategy)
-        : generateCounterClause(clauseText, "");
+    const getEmailContent = () => {
+        if (counterClause) {
+            return `Dear [Client Name],\n\nI've reviewed the contract and have a proposed amendment regarding the following clause:\n\n"${clauseText.slice(0, 120)}..."\n\nProposed Counter-Clause:\n${counterClause}\n\nI believe this adjustment is fair and in line with industry standards. Please let me know if you're open to discussing this before we finalize the agreement.\n\nBest regards,\n[Your Name]`;
+        }
+        return negotiationStrategy
+            ? generateCounterClause(clauseText, negotiationStrategy)
+            : generateCounterClause(clauseText, "");
+    };
+
+    const counterEmail = getEmailContent();
 
     const handleCopy = () => {
         navigator.clipboard.writeText(counterEmail);

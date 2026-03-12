@@ -11,6 +11,7 @@ export type AlertItem = {
     severity: "medium" | "high" | "critical";
     legalTranslation?: string;
     negotiationStrategy?: string;
+    counterClause?: string;
 };
 
 interface RiskMeterProps {
@@ -152,12 +153,14 @@ export function RiskMeter({ score, alerts = [], title = "Contract Risk Score", p
                                         <NegotiationCoPilot
                                             clauseText={alert.description}
                                             negotiationStrategy={alert.negotiationStrategy}
+                                            counterClause={alert.counterClause}
                                             planTier={planTier}
                                         />
                                     ) : alert.negotiationStrategy ? (
                                         <NegotiationCoPilot
                                             clauseText={alert.description}
                                             negotiationStrategy={alert.negotiationStrategy}
+                                            counterClause={alert.counterClause}
                                             planTier="starter"
                                         />
                                     ) : null}
