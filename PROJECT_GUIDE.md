@@ -211,37 +211,42 @@ Scope-Shield/
 ├── .env.local                       ← 🔐 Your secret API keys
 ├── package.json                     ← Dependencies
 └── next.config.ts                   ← Next.js configuration
-```
 
 ---
 
-## 🎯 Features — Full List
+## 🎯 Core Features — Comprehensive Suite
 
-### For Users
-| Feature | Tier | Description |
+### For Professional Users
+| Strategic Feature | Intelligence Level | Functional Impact |
 |---|---|---|
-| PDF Contract Upload | All | Upload any PDF contract |
-| AI Risk Analysis | All | Gemini finds risky clauses |
-| Risk Score (0-100) | All | Visual gauge showing danger level |
-| Plain English Translation | All | Legal jargon explained simply |
-| Task & Milestone Extraction | All | AI builds your project roadmap |
-| Invoice Draft Generator | All | Generate invoice per milestone |
-| Redline Preview | All | Contract text with red highlights |
-| Negotiation Co-Pilot | Pro/Enterprise | One-click counter-clause email |
-| Conflict Detector | Pro/Enterprise | Compare 2 contracts for contradictions |
-| PDF & Markdown Export | Pro/Enterprise | Download your full analysis |
-| Unlimited Scans | Pro/Enterprise | No scan limits |
-| Free Tier | Starter | 2 total scans |
+| Secure PDF Acquisition | High | Seamlessly ingest legal documents for processing |
+| AI-Driven Risk Analysis | Google Gemini | Identify high-risk clauses with contextual accuracy |
+| Risk Governance Index | 0-100 Score | Instant visual indicator of document health |
+| Plain-English Translation | Professional | Neutralize complex legal jargon into clear insights |
+| Deliverable Extraction | Automated | AI-generated project roadmaps based on terms |
+| Milestone Billing Engine | Integration-Ready | Draft invoices aligned with project progression |
+| Risk Auditing (Redlines) | Visualization | Precise highlighting of predatory contract terms |
+| Negotiation Co-Pilot | Advanced AI | Generate strategic counter-proposals instantly |
+| Conflict Detection | Comparative AI | Audit inconsistencies across multiple documents |
+| Executive Reporting | PDF/Markdown | Professional exports for stakeholders and records |
 
-### For You (Admin)
-| Feature | Where |
+### For Platform Administrators
+| Governance Feature | Functional Scope |
 |---|---|
-| View all users + their plans | `/admin` |
-| See platform scan stats | `/admin` |
-| View Payoneer payment receipts | `/admin` |
-| Approve payments (1-click) | `/admin` → Approve & Activate |
-| Auto-send approval email | Happens automatically via Resend |
+| User Lifecycle Management | `/admin` | Oversee accounts, permissions, and subscription tiers |
+| Platform Analytics | `/admin` | Real-time tracking of scanning volume and subscriptions |
+| Financial Oversight | `/admin` | Audit manual payment receipts and transaction history |
+| Automated Provisioning | Instant | Single-click approval and automated user notification |
+| Communication Automation | Resend AI | Professional email delivery for system events |
 
+---
+
+## 🔄 Professional Operational Workflow
+
+1. **Intake & Analysis:** Upload the target contract via the secure portal. Our AI immediately begins deconstructing the document structure.
+2. **Risk Governance:** Review the Risk Index and identified redlines. Understand the potential impact of terms through our translation engine.
+3. **Strategic Negotiation:** Utilize the Co-Pilot to generate professional responses for unfavorable clauses.
+4. **Project Activation:** Transform the final agreed terms into a functional project roadmap with automated milestone tracking.
 ---
 
 ## 💳 Payment Flow
